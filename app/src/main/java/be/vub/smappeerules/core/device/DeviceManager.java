@@ -13,9 +13,16 @@ public class DeviceManager {
     // All devices and device groups in the app
     List<IDeviceComponent> allComponents = new ArrayList<IDeviceComponent>();
 
+    public IDeviceComponent searchComponent(String name){
+        for (int i = 0; i < allComponents.size(); i++){
+            if(allComponents.get(i).getName().equals(name))
+                return allComponents.get(i);
+        }
+        return null;
+    }
+
 
     //TODO PERSISTENT DEVICES
-
 
     // All rules in the app
     List<Rule> allRules = new ArrayList<Rule>();

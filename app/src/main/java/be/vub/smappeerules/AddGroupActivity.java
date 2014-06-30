@@ -85,8 +85,8 @@ public class AddGroupActivity extends Activity {
                             deviceGroup.addToGroup(d);
                         }
                     }
+                    deviceGroup.writeToFile();
 
-                    //app.storeGroup(name, deviceArray);
                     finish();
             }
             }
