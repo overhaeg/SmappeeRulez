@@ -31,10 +31,17 @@ public class createRule extends Activity {
         }**/
 
         ArrayList<String> propertyoptions = new ArrayList<String>();
-        propertyoptions.add("OR");
+        propertyoptions.add("consumption");
+        propertyoptions.add("production");
+        propertyoptions.add("duration on");
+        propertyoptions.add("duration off");
+
+
 
         ArrayList<String> groupoptions = new ArrayList<String>();
-        groupoptions.add("AND");
+        groupoptions.add("Refrigirator");
+        groupoptions.add("lamp");
+        groupoptions.add("TV");
         fillRule(groupoptions, propertyoptions);
 
     }
