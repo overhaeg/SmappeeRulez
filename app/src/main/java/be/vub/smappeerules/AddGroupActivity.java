@@ -8,10 +8,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import be.vub.smappeerules.R;
 
 public class AddGroupActivity extends Activity {
@@ -19,6 +24,8 @@ public class AddGroupActivity extends Activity {
     private ListView groups;
     private EditText editName;
     private Button btnValidate;
+    //devices need to be added to this array
+    List<String> deviceArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,25 @@ public class AddGroupActivity extends Activity {
 
         }
         );
+
+        //dummy population
+        deviceArray.add("Koffiezet");
+        deviceArray.add("Wasmachine");
+        deviceArray.add("Playstation");
+        deviceArray.add("TV");
+        deviceArray.add("Oven");
+        deviceArray.add("Radio");
+
+
+        // This is the array adapter, it takes the context of the activity as a
+        // first parameter, the type of list view as a second parameter and your
+        // array as a third parameter.
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                deviceArray );
+
+        groups.setAdapter(arrayAdapter);
 
         btnValidate.setOnClickListener(new View.OnClickListener(){
                 @Override
