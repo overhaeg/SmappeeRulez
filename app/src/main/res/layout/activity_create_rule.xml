@@ -96,7 +96,7 @@
                 android:layout_row="5"
                 android:layout_column="0"
                 android:layout_columnSpan="2"
-                android:background="#ffcfff00" />
+                android:background="#abb865" />
 
         </GridLayout>
      </ScrollView>

@@ -6,8 +6,9 @@
     android:weightSum="1">
 
     <ImageView
-        android:layout_width="263dp"
-        android:layout_height="263dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+
         android:id="@+id/imageView"
         android:src="@drawable/ic_launcher"
         android:layout_gravity="center_horizontal" />
@@ -16,33 +17,45 @@
         android:layout_width="401dp"
         android:layout_height="wrap_content"
         android:text="Create new rule"
-        android:id="@+id/bCreate" />
+        android:id="@+id/bCreate"
+        android:background="#ffacb1af"
+        android:layout_margin="2dp"
+        android:layout_weight="0.10" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Manage rules"
-        android:id="@+id/bManage" />
+        android:id="@+id/bManage"
+        android:background="#ffacb1af"
+        android:layout_margin="2dp"
+        android:layout_weight="0.10" />
 
     <Button
         android:layout_width="398dp"
         android:layout_height="wrap_content"
         android:text="See alert log"
-        android:id="@+id/bLog" />
+        android:id="@+id/bLog"
+        android:background="#ffacb1af"
+        android:layout_margin="2dp"
+        android:layout_weight="0.10" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="create group of appliences"
-        android:id="@+id/bAppl" />
+        android:id="@+id/bAppl"
+        android:background="#ffacb1af"
+        android:layout_margin="2dp"
+        android:layout_weight="0.10" />
 
     <Button
         android:layout_width="397dp"
         android:layout_height="wrap_content"
         android:text="HELP ME"
         android:id="@+id/bHelp"
-        android:background="#ffd5e84e"
+        android:background="#abb865"
         android:clickable="true"
-        android:layout_weight="0.08" />
+        android:layout_weight="0.10" />
 
 </LinearLayout>
