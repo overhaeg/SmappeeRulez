@@ -5,7 +5,8 @@ package be.vub.smappeerules.core.rule;
  */
 public class Rule {
 
+
     public String toRuleString() {
-        return "";
+        return ifPart.toRuleString() + thenPart.toRuleString();
     }
 }

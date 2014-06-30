@@ -31,4 +31,20 @@ public interface IDeviceComponent {
      * @return
      */
     public float getConsumption(Date startDur, Date endDur);
+
+    /**
+     * Returns whether the device is currently on
+     */
+    public boolean isOn();
+
+    /**
+     * Returns whether the device is currently off
+     */
+    public boolean isOff();
+
+    /**
+     * Returns how long the device is currently on or off
+     */
+    public float getStatusDuration();
+
 }

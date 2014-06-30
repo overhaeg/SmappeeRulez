@@ -46,6 +46,36 @@ public class DeviceGroup implements IDeviceComponent {
         return sum;
     }
 
+    @Override
+    public boolean isOn() {
+        // all devices on?
+        boolean acc = true;
+        for(int i = 0; i < devices.size(); i++) {
+            acc = acc && devices.get(i).isOn();
+        }
+        return acc;
+    }
+
+    @Override
+    public boolean isOff() {
+        // all devices on?
+        boolean acc = true;
+        for(int i = 0; i < devices.size(); i++) {
+            acc = acc && devices.get(i).isOff();
+        }
+        return acc;
+    }
+
+    @Override
+    public float getStatusDuration() {
+        // sum of all consumptions of devices
+        float sum = 0;
+        for(int i = 0; i < devices.size(); i++) {
+            sum =+ devices.get(i).getStatusDuration();
+        }
+        return sum;
+    }
+
     public void addToGroup(Device d) {
         this.devices.add(d);
     }

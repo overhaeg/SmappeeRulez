@@ -33,4 +33,22 @@ public class Device implements IDeviceComponent {
         //TODO API stuff
         return 0;
     }
+
+    @Override
+    public boolean isOn() {
+        //TODO API stuff
+        return false;
+    }
+
+    @Override
+    public boolean isOff() {
+        //TODO API stuff
+        return false;
+    }
+
+    @Override
+    public float getStatusDuration() {
+        //TODO API stuff
+        return 0;
+    }
 }
