@@ -16,15 +16,19 @@
         <activity
             android:name=".AddGroupActivity"
             android:label="Add group" >
+
+        </activity>
+        <activity
+            android:name=".AlertLogActivity"
+            android:label="Alert log" >
+        </activity>
+        <activity
+            android:name=".createRule">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".AlertLogActivity"
-            android:label="Alert log" >
         </activity>
     </application>
 
