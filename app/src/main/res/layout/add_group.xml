@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="77dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name:"
+        android:id="@+id/groupName"
+        android:layout_row="0"
+        android:layout_column="0" />
+
+    <EditText
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editName"
+        android:layout_weight="1"
+        android:layout_row="0"
+        android:layout_column="5"
+        style="@android:style/TextAppearance.DeviceDefault"
+        android:layout_toRightOf="@+id/groupName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:layout_width="274dp"
+        android:layout_height="347dp"
+        android:id="@+id/groups"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editName"
+        android:layout_above="@+id/validate"
+        android:clickable="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:text="Validate"
+        android:id="@+id/validate"
+        android:layout_row="8"
+        android:layout_column="1"
+        android:background="#ffcaff53"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

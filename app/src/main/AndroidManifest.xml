@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddGroupActivity"
+            android:label="@string/title_activity_add_group" >
+        </activity>
+        <activity
+            android:name=".AlertLogActivity"
+            android:label="@string/title_activity_alert_log" >
+        </activity>
     </application>
 
 </manifest>
