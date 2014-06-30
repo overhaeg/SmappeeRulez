@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".createRule"
+            android:label="@string/title_activity_create_rule"
+            android:parentActivityName=".MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.vub.smappeerules.MyActivity" />
+        </activity>
     </application>
 
 </manifest>
