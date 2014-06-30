@@ -1,5 +1,11 @@
 package be.vub.smappeerules.core.device;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -82,5 +88,36 @@ public class DeviceGroup implements IDeviceComponent {
 
     public void removeFromGroup(Device d) {
         this.devices.remove(d);
+    }
+
+
+    //helpfunction
+    public String listToString(List<Device> d){
+        String devices = " ";
+        for(int i = 0; i < d.size() ; i++)
+            devices.concat(d.get(i).getName() + ", ");
+        return devices;
+    }
+
+    public void writeToFile(){
+        // The name of the file to open.
+        String fileName = "devicegroups.txt";
+
+        // This will reference one line at a time
+        String line = null;
+
+        try {
+            // Assume default encoding.
+            FileWriter fileWriter = new FileWriter(fileName, true);
+
+            // Always wrap FileWriter in BufferedWriter.
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(name + "," + listToString(this.devices) );
+            bufferedWriter.close();
+        }
+        catch(IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
