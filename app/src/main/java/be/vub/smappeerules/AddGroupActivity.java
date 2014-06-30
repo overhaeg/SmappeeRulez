@@ -18,12 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.vub.smappeerules.R;
+import be.vub.smappeerules.core.device.Device;
+import be.vub.smappeerules.core.device.DeviceGroup;
 
 public class AddGroupActivity extends Activity {
 
     private ListView groups;
     private EditText editName;
     private Button btnValidate;
+    private DeviceGroup deviceGroup;
     //devices need to be added to this array
     List<String> deviceArray = new ArrayList<String>();
 
@@ -71,8 +74,18 @@ public class AddGroupActivity extends Activity {
                 public void onClick (View v){
 
                     String name = editName.getText().toString();
+                    deviceGroup = new DeviceGroup(name);
                     //gives array with checked positions on true
                     SparseBooleanArray checkedPositions = groups.getCheckedItemPositions();
+
+                    for(int i = 0; i< deviceArray.size(); i++ ) {
+                        if (checkedPositions.get(i)) {
+
+                            Device d = new Device(deviceArray.get(i));
+                            deviceGroup.addToGroup(d);
+                        }
+                    }
+
                     //app.storeGroup(name, deviceArray);
                     finish();
             }

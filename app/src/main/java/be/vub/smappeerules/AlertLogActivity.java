@@ -28,7 +28,7 @@ public class AlertLogActivity extends Activity {
 
         //dummy population
         rulesArray.add("Koffiezet with consumption < 15W");
-        rulesArray.add("Wasmachine with comsumption duration ");
+        rulesArray.add("Wasmachine on duration < 300mins");
 
 
 
