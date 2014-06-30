@@ -3,6 +3,7 @@ package be.vub.smappeerules;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ public class AddGroupActivity extends Activity {
     private DeviceGroup deviceGroup;
     //devices need to be added to this array
     List<String> deviceArray = new ArrayList<String>();
+    private static final String TAG = "MyActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +43,16 @@ public class AddGroupActivity extends Activity {
 
 
         groups.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            // change the background color of the selected element
-            view.setBackgroundColor(Color.LTGRAY);
-            }
+                                          @Override
+                                          public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                              // change the background color of the selected element
+                                              view.setBackgroundColor(Color.LTGRAY);
+                                          }
 
-        }
+                                      }
         );
+
+        groups.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         //dummy population
         deviceArray.add("Koffiezet");
@@ -64,10 +68,11 @@ public class AddGroupActivity extends Activity {
         // array as a third parameter.
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
-                android.R.layout.simple_list_item_1,
+                android.R.layout.simple_list_item_multiple_choice,
                 deviceArray );
 
         groups.setAdapter(arrayAdapter);
+
 
         btnValidate.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -77,11 +82,16 @@ public class AddGroupActivity extends Activity {
                     deviceGroup = new DeviceGroup(name);
                     //gives array with checked positions on true
                     SparseBooleanArray checkedPositions = groups.getCheckedItemPositions();
-
-                    for(int i = 0; i< deviceArray.size(); i++ ) {
+                    if (checkedPositions == null) {
+                        Log.i(TAG,"tis null");
+                        return;
+                    }
+                    for(int i = 0; i< groups.getAdapter().getCount(); i++ ) {
                         if (checkedPositions.get(i)) {
+                            Log.i(TAG,"Selected items: " + checkedPositions.get(i));
 
                             Device d = new Device(deviceArray.get(i));
+                            Log.i(TAG,"Selected items: " + d.getName());
                             deviceGroup.addToGroup(d);
                         }
                     }
