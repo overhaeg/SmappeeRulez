@@ -12,4 +12,5 @@ public class Constants  {
     public static final String CLIENT_SECRET = "zajUnzVEQc";
     public static final String USERNAME = "VUBsmappee";
     public static final String PASSWORD = "@rCH$map";
+    public static final String GET_URL = "https://app1pub.smappee.net/dev/v1/servicelocation";
 }

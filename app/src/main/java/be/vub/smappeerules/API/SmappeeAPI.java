@@ -11,6 +11,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
@@ -52,17 +53,28 @@ public class SmappeeAPI {
 
     }
 
-    private HttpURLConnection getConnection(URL url, String parameters) throws IOException
+    private JsonObject getData(URL url) throws IOException
     {
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        // optional default is GET
-        con.setRequestMethod("GET");
+        connection.setRequestMethod("GET");
 
-        //add request header
-        con.setRequestProperty("Authorization", access_token);
+        connection.setRequestProperty("Authorization", access_token);
 
-        return con;
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        JsonObject jsonObj = new JsonParser().parse(response.toString()).getAsJsonObject();
+
+        return jsonObj;
     }
 
     private HttpsURLConnection postConnection(URL url, String parameters) throws IOException
@@ -117,12 +129,46 @@ public class SmappeeAPI {
 
     }
 
-    public JsonObject getServiceLocations(){
+    public JsonObject getServiceLocations() throws IOException {
 
+        URL url = new URL(Constants.GET_URL);
 
+        JsonObject jsonObj = getData(url);
 
-        return null;
+        return jsonObj;
+
     }
 
 
+    public JsonObject getServiceLocationInfo(String id) throws IOException {
+
+        String url_string = Constants.GET_URL + "/" +  id + "/info";
+        URL url = new URL(url_string);
+
+        JsonObject jsonObj = getData(url);
+
+        return jsonObj;
+    }
+
+    public JsonObject getConsumption(String id, String from, String to, String aggregation) throws IOException {
+
+        String url_string = Constants.GET_URL + "/" +  id + "/consumption?"
+                                              + "aggregation=" + aggregation + "&"
+                                              + "from=" + from + "&"
+                                              + "to=" + to;
+        URL url = new URL(url_string);
+
+        JsonObject jsonObj = getData(url);
+
+        return jsonObj;
+
+    }
+
+   // public JsonObject getEvents(String id, List<String> applianceIds, String from, String to, String maxNumber) {
+
+  //     String url_string = Constants.getURL + "/" + id + "/events"
+//                                            +
+   // }
+
+//
 }
