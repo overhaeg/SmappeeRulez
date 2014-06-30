@@ -1,7 +1,6 @@
 package be.vub.smappeerules.API;
 
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -11,8 +10,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+
 import javax.net.ssl.HttpsURLConnection;
 
 /**
@@ -28,10 +28,10 @@ public class SmappeeAPI {
 
         URL url = new URL(Constants.AUTH_URL);
         String parameters = "grant_type=" + Constants.GRANT_PSW + "&" +
-                            "client_id" + Constants.CLIENT_ID + "&" +
-                            "client_secret" + Constants.CLIENT_SECRET + "&" +
-                            "username" + Constants.USERNAME + "&" +
-                            "password" + Constants.PASSWORD;
+                "client_id" + Constants.CLIENT_ID + "&" +
+                "client_secret" + Constants.CLIENT_SECRET + "&" +
+                "username" + Constants.USERNAME + "&" +
+                "password" + Constants.PASSWORD;
         HttpsURLConnection connection = postConnection(url, parameters);
 
         BufferedReader in = new BufferedReader(
@@ -104,9 +104,9 @@ public class SmappeeAPI {
 
         URL url = new URL(Constants.AUTH_URL);
         String parameters = "grant_type=" + Constants.GRANT_RTK + "&" +
-                            "refresh_tokens" + refresh_token + "&" +
-                            "client_id" + Constants.CLIENT_ID + "&" +
-                            "client_secret" + Constants.CLIENT_SECRET;
+                "refresh_tokens" + refresh_token + "&" +
+                "client_id" + Constants.CLIENT_ID + "&" +
+                "client_secret" + Constants.CLIENT_SECRET;
 
         HttpsURLConnection connection = postConnection(url, parameters);
 
@@ -153,9 +153,9 @@ public class SmappeeAPI {
     public JsonObject getConsumption(String id, String from, String to, String aggregation) throws IOException {
 
         String url_string = Constants.GET_URL + "/" +  id + "/consumption?"
-                                              + "aggregation=" + aggregation + "&"
-                                              + "from=" + from + "&"
-                                              + "to=" + to;
+                + "aggregation=" + aggregation + "&"
+                + "from=" + from + "&"
+                + "to=" + to;
         URL url = new URL(url_string);
 
         JsonObject jsonObj = getData(url);
@@ -164,11 +164,24 @@ public class SmappeeAPI {
 
     }
 
-   // public JsonObject getEvents(String id, List<String> applianceIds, String from, String to, String maxNumber) {
+    public JsonObject getEvents(String id, List<String> applianceIds, String from, String to, String maxNumber) throws IOException {
 
-  //     String url_string = Constants.getURL + "/" + id + "/events"
-//                                            +
-   // }
+        String appIds_string = "";
+        for(int i = 0; i < applianceIds.size(); i++)
+        {
+            id = applianceIds.get(i);
+            appIds_string = appIds_string + "applianceId=" + id + "&";
+        }
+        String url_string = Constants.GET_URL + "/" + id + "/events"
+                + appIds_string
+                + "maxNumber=" + maxNumber + "&"
+                + "from=" + from + "&"
+                + "to=" + to;
+        URL url = new URL(url_string);
+        JsonObject jsonObj = getData(url);
 
-//
+        return jsonObj;
+
+    }
+
 }

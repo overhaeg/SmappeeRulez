@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 
 import java.lang.reflect.Array;
@@ -30,10 +31,19 @@ public class createRule extends Activity {
         }**/
 
         ArrayList<String> propertyoptions = new ArrayList<String>();
-        propertyoptions.add("OR");
+        propertyoptions.add("consumption");
+        propertyoptions.add("production");
+        propertyoptions.add("duration on");
+        propertyoptions.add("duration off");
+
+
 
         ArrayList<String> groupoptions = new ArrayList<String>();
-        groupoptions.add("AND");
+        groupoptions.add("Refrigirator");
+        groupoptions.add("lamp");
+        groupoptions.add("TV");
+        fillRule(groupoptions, propertyoptions);
+
     }
 
 
@@ -46,39 +56,47 @@ public class createRule extends Activity {
 
             ArrayList<String> conditionlist= new ArrayList<String>();
 
-            andorlist.add("<");
-            andorlist.add("<=");
-            andorlist.add(">");
-            andorlist.add(">=");
-            andorlist.add("=");
-            andorlist.add("not =");
+            conditionlist.add("<");
+            conditionlist.add("<=");
+            conditionlist.add(">");
+            conditionlist.add(">=");
+            conditionlist.add("=");
+            conditionlist.add("not =");
+
             // Fill the first device  group
-            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,R.layout.activity_create_rule,groupoptions);
+            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
+            adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner1=(Spinner)findViewById(R.id.devgroup1) ;
             mSpinner1.setAdapter(adapter1);
 
+
+
+
+
             // Fill the second device group
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,R.layout.activity_create_rule,groupoptions);
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
+            adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner2=(Spinner)findViewById(R.id.devgroup2) ;
             mSpinner2.setAdapter(adapter2);
 
             // Fill the first device property
-            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,R.layout.activity_create_rule,propertyoptions);
+            ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,propertyoptions);
+           adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner3=(Spinner)findViewById(R.id.propert1) ;
             mSpinner3.setAdapter(adapter3);
 
             // Fill the second device propery
-            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this,R.layout.activity_create_rule,groupoptions);
+            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
+            adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner4=(Spinner)findViewById(R.id.propert2) ;
             mSpinner4.setAdapter(adapter4);
 
-            ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this,R.layout.activity_create_rule,conditionlist);
+            ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,conditionlist);
+            adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner5=(Spinner)findViewById(R.id.condition) ;
             mSpinner5.setAdapter(adapter5);
 
-            ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(this,R.layout.activity_create_rule,andorlist);
-            Spinner mSpinner6=(Spinner)findViewById(R.id.andor) ;
-            mSpinner6.setAdapter(adapter6);
+
         };
 
 
