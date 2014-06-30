@@ -6,7 +6,8 @@ package be.vub.smappeerules.API;
 public class Constants  {
 
     public static final String AUTH_URL = "https://app1pub.smappee.net/dev/v1/oauth2/token";
-    public static final String GRANT_TYPE = "passwword";
+    public static final String GRANT_PSW = "passwword";
+    public static final String GRANT_RTK = "refresh_tokens";
     public static final String CLIENT_ID = "DorienAerts";
     public static final String CLIENT_SECRET = "zajUnzVEQc";
     public static final String USERNAME = "VUBsmappee";
