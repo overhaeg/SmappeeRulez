@@ -33,22 +33,23 @@ public class CoreFacade{
    return OurInstance;
     }
 
-    SmappeeAPI api;
+    SmappeeAPI api=null; //TODO
     DeviceManager dm;
     RuleManager rm;
 
     public CoreFacade() {}
 
     public CoreFacade(Context ctx) throws IOException {
-        api = new SmappeeAPI();
+        //api = new SmappeeAPI(); TODO
         dm = new DeviceManager(api, ctx);
         rm = new RuleManager(dm, ctx);
     }
 
 
 
-    public void checkRules() {
-        rm.checkRules();
+    public List<String> checkRules() {
+
+        return rm.checkRules();
     }
 
     public void addNewRule(List<String> ruleList) {
@@ -71,8 +72,8 @@ public class CoreFacade{
         rm.removeRule(r);
     }
 
-    public void getAllRules() {
-        rm.getAllRules();
+    public List<Rule> getAllRules() {
+        return rm.getAllRules();
     }
 
     public List<IDeviceComponent> getAllComponents() {

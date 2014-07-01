@@ -24,8 +24,8 @@ public class DeviceManager {
 
     public DeviceManager(SmappeeAPI api, Context ctx) throws IOException {
         this.api = api;
-        api.getServiceLocations();
-        api.getServiceLocationInfo();
+        //api.getServiceLocations();
+        //api.getServiceLocationInfo();TODO
         this.ctx = ctx;
         initAllComponents();
     }
@@ -68,7 +68,16 @@ public class DeviceManager {
     }
 
     private void initAllComponents() {
-        List<String> names = api.getApplianceNames();
+        //List<String> names = api.getApplianceNames();
+        List<String> names = new ArrayList<String>();
+        names.add("Solar Panel");
+        names.add("TV");
+        names.add("refrigirator");
+        names.add("oven");
+        names.add("iron");
+        names.add("radio");
+        names.add("kitchen light");
+        names.add("bedroom light");
         for(int i = 0; i < names.size(); i++) {
             allComponents.add(new Device(names.get(i), api));
         }

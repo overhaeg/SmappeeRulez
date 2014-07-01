@@ -42,22 +42,16 @@ public class createRule extends Activity {
 
         ArrayList<String> groupoptions =  new ArrayList<String>();
 
+        CoreFacade app= CoreFacade.getInstance(getApplicationContext());
+        List<IDeviceComponent> theDevices =  app.getAllComponents();
 
-
-        /**DeviceManager device = new DeviceManager();
-        device.readFromFile(getApplicationContext());
-        List<IDeviceComponent> theDevices =  device.getAllComponents();**/
         groupoptions.add("Select applience");
-        /**for(int i=0; i < theDevices.size() ; i++){
-            groupoptions.add(theDevices.get(i).getName());
-            Log.d(theDevices.get(i).getName(), "devices");
 
-        }
         for(int i=0; i < theDevices.size() ; i++){
             groupoptions.add(theDevices.get(i).getName());
             Log.d(theDevices.get(i).getName(), "devices");
 
-        }**/
+        }
 
         fillRule(groupoptions, propertyoptions);
 
@@ -69,8 +63,8 @@ public class createRule extends Activity {
                 Intent intentMain = new Intent(createRule.this ,
                         MyActivity.class);
                 createRule.this.startActivity(intentMain);
-                Log.d(createRule().get(2), "hip hoy"+createRule().size());
-
+                //Log.d(createRule().get(2), "hip hoy"+createRule().size());
+            CoreFacade.getInstance(getApplicationContext()).addNewRule(createRule());
             }
 
 

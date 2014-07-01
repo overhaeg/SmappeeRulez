@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.vub.smappeerules.R;
+import be.vub.smappeerules.core.CoreFacade;
+import be.vub.smappeerules.core.rule.Rule;
 
 public class AlertLogActivity extends Activity {
 
@@ -25,10 +27,15 @@ public class AlertLogActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_screen);
         alerts = (ListView)findViewById(R.id.alertsList);
+        CoreFacade app= CoreFacade.getInstance(getApplicationContext());
+       /** List<Rule> r= app.getAllRules();
 
+        for(int i= 0; i< r.size();i++){
+            rulesArray.add(r.get(i).getAlert());
+        }**/
         //dummy population
-        rulesArray.add("Koffiezet with consumption < 15W");
-        rulesArray.add("Wasmachine on duration < 300mins");
+        rulesArray = app.checkRules();
+
 
 
 

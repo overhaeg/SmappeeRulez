@@ -85,8 +85,8 @@ public class DeviceGroup implements IDeviceComponent {
             outputStreamWriter.write(name + "," + listToString(this.devices)+ "/n");
             outputStreamWriter.close();      */
             BufferedReader br = new BufferedReader(new FileReader(devicesFile));
-            Log.i("test", br.readLine());
-            Log.i("testy", br.readLine());
+            //Log.i("test", br.readLine());
+            //Log.i("testy", br.readLine());
             /**
             FileWriter fileWriter = new FileWriter(fileName, true);
 

@@ -25,13 +25,15 @@ public class Device implements IDeviceComponent {
 
     @Override
     public float getProduction(Date startDur, Date endDur) throws IOException {
-        List<String> p = api.getEvents(name);
-        return Float.parseFloat(p.get(0));
+        //List<String> p = api.getEvents(name);
+        //return Float.parseFloat(p.get(0));!!!!!!!!!!
+        return 2000;
     }
 
     @Override
     public float getConsumption(Date startDur, Date endDur) throws IOException {
-        List<String> c = api.getEvents(name);
-        return Float.parseFloat(c.get(0));
+       // List<String> c = api.getEvents(name);
+        //return Float.parseFloat(c.get(0));!!!!!!!!!!!!!!
+        return 3000;
     }
 }
