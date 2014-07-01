@@ -9,7 +9,7 @@
     tools:context="be.vub.smappeerules.Help">
 
     <TextView
-        android:text="Welcome to Snappy rulez! \n \nThis application was created so that users of the smappy device (like you) could create their own rules.\nA rule means a condition regarding your energy that, if fullfilled , will send you a notification.\n\nEach rule is created by selecting an applience or group of appliences and if you want to monitor the consumption or in the case of solar panels the production. After this you select an operator if the consumption/production should be more, less, equal or not equal to the production/consumption of an other device group or value\n\n Good luck!"
+        android:text="Welcome to Smappee rulez! \n \nThis application was created so that users of the smappy device (like you) could create their own rules.\nA rule means a condition regarding your energy that, if fullfilled , will send you a notification.\n\nEach rule is created by selecting an applience or group of appliences and if you want to monitor the consumption or in the case of solar panels the production. After this you select an operator if the consumption/production should be more, less, equal or not equal to the production/consumption of an other device group or value\n\n Good luck!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
