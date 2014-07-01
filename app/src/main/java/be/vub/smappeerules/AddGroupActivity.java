@@ -95,7 +95,7 @@ public class AddGroupActivity extends Activity {
                             deviceGroup.addToGroup(d);
                         }
                     }
-                    deviceGroup.writeToFile();
+                    deviceGroup.writeToFile(getApplicationContext());
 
                     finish();
             }

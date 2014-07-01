@@ -1,13 +1,15 @@
 package be.vub.smappeerules.core.device;
 
+import android.content.Context;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import be.vub.smappeerules.core.rule.Rule;
-import be.vub.smappeerules.core.rule.RuleInterpreter;
 
 /**
  * Created by Jonas on 30/06/2014.
@@ -35,13 +37,16 @@ public class DeviceManager {
         return d;
     }
 
-    public void readFromFile() {
+    public void readFromFile(Context ctx) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("devices.txt"));
+            String fileName = "devicesgroup.txt";
+            File devicesFile = new File(ctx.getFilesDir(), fileName);
+            BufferedReader br = new BufferedReader(new FileReader(devicesFile));
             String line = br.readLine();
 
             while (line != null) {
                 allComponents.add(StringToDeviceGroup(line));
+                line = br.readLine();
             }
 
         } catch (IOException e) {

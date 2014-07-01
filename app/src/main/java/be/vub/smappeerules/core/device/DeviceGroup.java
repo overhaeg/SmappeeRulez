@@ -1,11 +1,17 @@
 package be.vub.smappeerules.core.device;
 
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -95,26 +101,40 @@ public class DeviceGroup implements IDeviceComponent {
     public String listToString(List<Device> d){
         String devices = " ";
         for(int i = 0; i < d.size() ; i++)
-            devices.concat(d.get(i).getName() + ", ");
+            devices += d.get(i).getName() + ", ";
         return devices;
     }
 
-    public void writeToFile(){
-        // The name of the file to open.
-        String fileName = "devices.txt";
+    public void writeToFile(Context ctx){
+        String fileName = "devicesgroup.txt";
+
+        File devicesFile = new File(ctx.getFilesDir(), fileName);
 
         // This will reference one line at a time
         String line = null;
 
         try {
-            // Assume default encoding.
+            FileWriter filewriter = new FileWriter(devicesFile, true);
+            BufferedWriter out = new BufferedWriter(filewriter);
+            out.write(name + "," + listToString(this.devices)+ System.getProperty("line.separator"));
+            out.close();
+
+           /* OutputStreamWriter outputStreamWriter = new OutputStreamWriter()amWriter((fileName, Context.MODE_APPEND));
+            outputStreamWriter.write(name + "," + listToString(this.devices)+ "/n");
+            outputStreamWriter.close();      */
+            BufferedReader br = new BufferedReader(new FileReader(devicesFile));
+            Log.i("test", br.readLine());
+            Log.i("testy", br.readLine());
+            /**
             FileWriter fileWriter = new FileWriter(fileName, true);
 
+
+            //FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
             // Always wrap FileWriter in BufferedWriter.
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(name + "," + listToString(this.devices) );
-            bufferedWriter.close();
+            bufferedWriter.close(); **/
         }
         catch(IOException ex) {
             ex.printStackTrace();

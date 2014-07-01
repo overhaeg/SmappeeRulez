@@ -23,6 +23,23 @@ public class MainToTest {
         RuleInterpreter ri = new RuleInterpreter();
         //file.readRules(ri);
 */
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("C:\\Users\\Audrey\\AndroidStudioProjects\\SmappeeRulez\\app\\src\\main\\assets\\devices.txt", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Always wrap FileWriter in BufferedWriter.
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        try {
+            bufferedWriter.write("blbalba");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         String ifPart = "a qsdf bc";
         String[] s = ifPart.split(" .* ");
         System.out.println(s[0] + s[1]);
