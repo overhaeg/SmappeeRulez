@@ -5,4 +5,5 @@ package be.vub.smappeerules.core.rule;
  */
 public interface ITerm {
     public String toRuleString();
+    public float evaluate();
 }

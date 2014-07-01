@@ -3,6 +3,8 @@ package be.vub.smappeerules.core.rule;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.vub.smappeerules.core.device.DeviceManager;
+import be.vub.smappeerules.core.device.IDeviceComponent;
 import be.vub.smappeerules.core.rule.io.RuleFile;
 
 /**
@@ -18,17 +20,22 @@ public class RuleManager {
     // Text file with rules //TODO change for android
     RuleFile file = new RuleFile("C:\\Users\\Jonas\\Desktop\\" + "rules.txt");
 
+    DeviceManager dm;
     RuleInterpreter ri = new RuleInterpreter();
 
     // All rules in the app
     List<Rule> allRules = new ArrayList<Rule>();
+
+    public RuleManager(DeviceManager dm) {
+        this.dm = dm;
+    }
 
     private void initAllRules() {
         file.readRules(this);
     }
 
     public void processRule(String rule) {
-        Rule r = ri.interpretRule(rule);
+        Rule r = ri.interpretRule(rule, dm);
         allRules.add(r);
     }
 
@@ -53,4 +60,10 @@ public class RuleManager {
     }
 
     //TODO als vanuit UI geen Rule object gegeven mag worden... soort van String-based lookup doen van een rule in de allRules om te removen
+
+    public void checkRules() {
+
+        //TODO check each rule seperately, using the device manager provided.
+    }
+
 }

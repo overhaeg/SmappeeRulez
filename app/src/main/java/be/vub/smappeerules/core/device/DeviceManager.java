@@ -9,7 +9,7 @@ import be.vub.smappeerules.core.rule.RuleInterpreter;
 /**
  * Created by Jonas on 30/06/2014.
  */
-/**public class DeviceManager {
+public class DeviceManager {
     // All devices and device groups in the app
     List<IDeviceComponent> allComponents = new ArrayList<IDeviceComponent>();
 
@@ -47,4 +47,3 @@ import be.vub.smappeerules.core.rule.RuleInterpreter;
         allComponents.remove(g);
     }
 }
-**/

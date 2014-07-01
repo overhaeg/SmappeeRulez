@@ -5,7 +5,7 @@ import be.vub.smappeerules.core.rule.ITerm;
 /**
  * Created by Jonas on 30/06/2014.
  */
-public class Consumption implements Evaluated, ITerm {
+public class Consumption implements ITerm {
     float c;
 
     public float getC() {

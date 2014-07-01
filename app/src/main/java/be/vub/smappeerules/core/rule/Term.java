@@ -3,7 +3,6 @@ package be.vub.smappeerules.core.rule;
 import java.util.Date;
 
 import be.vub.smappeerules.core.datatypes.Consumption;
-import be.vub.smappeerules.core.datatypes.Evaluated;
 import be.vub.smappeerules.core.device.IDeviceComponent;
 
 /**
@@ -18,25 +17,19 @@ public class Term implements ITerm {
         this.method = method;
     }
 
-    public Evaluated evaluate() {
+    @Override
+    public float evaluate() {
         if (this.method.equals("consumption")) {
             //TODO parse ...(...-...)
             Date start = new Date();
             Date end = new Date();
-
-            Consumption cons = new Consumption();
-            cons.setC(c.getConsumption(start, end));
-            return cons;
-        } else if (this.method.equals("production")) {
-
-        } else if (this.method.equals("on/off")) {
-
-        } else if (this.method.equals("on/off_duration")) {
-
+            return c.getConsumption(start, end);
+        } else {    // (this.method.equals("production"))
+            //TODO parse ...(...-...)
+            Date start = new Date();
+            Date end = new Date();
+            return c.getProduction(start, end);
         }
-
-
-
     }
 
     @Override
