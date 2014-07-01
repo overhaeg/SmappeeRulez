@@ -1,5 +1,6 @@
 package be.vub.smappeerules.core;
 
+import android.app.Application;
 import android.content.Context;
 
 import java.io.IOException;
@@ -19,16 +20,20 @@ import be.vub.smappeerules.core.rule.ValueTerm;
  * Created by Jonas on 30/06/2014.
  */
 
-public class CoreFacade {
+public class CoreFacade extends Application{
     SmappeeAPI api;
     DeviceManager dm;
     RuleManager rm;
+
+    public CoreFacade() {}
 
     public CoreFacade(Context ctx) throws IOException {
         api = new SmappeeAPI();
         dm = new DeviceManager(api, ctx);
         rm = new RuleManager(dm, ctx);
     }
+
+
 
     public void checkRules() {
         rm.checkRules();

@@ -1,5 +1,6 @@
 package be.vub.smappeerules.core.rule;
 
+import java.io.IOException;
 import java.util.Date;
 
 import be.vub.smappeerules.core.device.IDeviceComponent;
@@ -19,10 +20,19 @@ public class Term implements ITerm {
     @Override
     public float evaluate() {
         if (this.method.equals("consumption")) {
-            return c.getConsumption(new Date(), new Date());
+            try {
+                return c.getConsumption(new Date(), new Date());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {    // (this.method.equals("production"))
-            return c.getProduction(new Date(), new Date());
+            try {
+                return c.getProduction(new Date(), new Date());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        return Float.parseFloat(null);
     }
 
     @Override

@@ -19,23 +19,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.vub.smappeerules.R;
+import be.vub.smappeerules.core.CoreFacade;
 import be.vub.smappeerules.core.device.Device;
 import be.vub.smappeerules.core.device.DeviceGroup;
+import be.vub.smappeerules.core.device.IDeviceComponent;
 
 public class AddGroupActivity extends Activity {
 
+    private CoreFacade app;
     private ListView groups;
     private EditText editName;
     private Button btnValidate;
     private DeviceGroup deviceGroup;
     //devices need to be added to this array
     List<String> deviceArray = new ArrayList<String>();
+    List<Device> devicesList = new ArrayList<Device>();
     private static final String TAG = "MyActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_group);
+
+        // gets the application to get the global variables
+        app = ((CoreFacade)getApplicationContext());
+
 
         groups =(ListView) findViewById(R.id.groups);
         btnValidate = (Button) findViewById(R.id.validate);
@@ -54,14 +62,13 @@ public class AddGroupActivity extends Activity {
 
         groups.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        //dummy population
-        deviceArray.add("Koffiezet");
-        deviceArray.add("Wasmachine");
-        deviceArray.add("Playstation");
-        deviceArray.add("TV");
-        deviceArray.add("Oven");
-        deviceArray.add("Radio");
-
+        List<IDeviceComponent> devicesComponents = app.getAllComponents();
+        for(int i=0; i< devicesComponents.size(); i++){
+            if(devicesComponents.get(i)instanceof Device){
+                deviceArray.add(devicesComponents.get(i).getName());
+                devicesList.add((Device) devicesComponents.get(i));
+            }
+        }
 
         // This is the array adapter, it takes the context of the activity as a
         // first parameter, the type of list view as a second parameter and your
@@ -90,7 +97,7 @@ public class AddGroupActivity extends Activity {
                         if (checkedPositions.get(i)) {
                             Log.i(TAG,"Selected items: " + checkedPositions.get(i));
 
-                            Device d = new Device(deviceArray.get(i));
+                            Device d = devicesList.get(i);
                             Log.i(TAG,"Selected items: " + d.getName());
                             deviceGroup.addToGroup(d);
                         }
