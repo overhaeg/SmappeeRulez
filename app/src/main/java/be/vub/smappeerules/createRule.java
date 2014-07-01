@@ -66,7 +66,8 @@ public class createRule extends Activity {
                 Intent intentMain = new Intent(createRule.this ,
                         MyActivity.class);
                 createRule.this.startActivity(intentMain);
-                Log.d(createRule().get(1), "hip hoy");
+                Log.d(createRule().get(2), "hip hoy"+createRule().size());
+
             }
 
 
