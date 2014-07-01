@@ -60,8 +60,6 @@ public class RuleManager {
         }
     }
 
-    //TODO als vanuit UI geen Rule object gegeven mag worden... soort van String-based lookup doen van een rule in de allRules om te removen
-
     // Checks all rules.
     // If return list is empty, no alerts need to be given.
     public List<String> checkRules() {
