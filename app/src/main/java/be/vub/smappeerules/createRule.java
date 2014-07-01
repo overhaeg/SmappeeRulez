@@ -15,17 +15,24 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import be.vub.smappeerules.R;
+import be.vub.smappeerules.core.CoreFacade;
+import be.vub.smappeerules.core.device.DeviceManager;
+import be.vub.smappeerules.core.device.IDeviceComponent;
 
 
 public class createRule extends Activity {
-
+    public CoreFacade app;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_rule);
         Button bSubmit = (Button) findViewById(R.id.ok);
+
 
 
         ArrayList<String> propertyoptions = new ArrayList<String>();
@@ -33,13 +40,24 @@ public class createRule extends Activity {
         propertyoptions.add("consumption");
         propertyoptions.add("production");
 
+        ArrayList<String> groupoptions =  new ArrayList<String>();
 
-        ArrayList<String> groupoptions = new ArrayList<String>();
+
+
+        /**DeviceManager device = new DeviceManager();
+        device.readFromFile(getApplicationContext());
+        List<IDeviceComponent> theDevices =  device.getAllComponents();**/
         groupoptions.add("Select applience");
-        groupoptions.add("Refrigirator");
-        groupoptions.add("lamp");
-        groupoptions.add("TV");
+        /**for(int i=0; i < theDevices.size() ; i++){
+            groupoptions.add(theDevices.get(i).getName());
+            Log.d(theDevices.get(i).getName(), "devices");
 
+        }
+        for(int i=0; i < theDevices.size() ; i++){
+            groupoptions.add(theDevices.get(i).getName());
+            Log.d(theDevices.get(i).getName(), "devices");
+
+        }**/
 
         fillRule(groupoptions, propertyoptions);
 

@@ -2,7 +2,9 @@ package be.vub.smappeerules;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +22,7 @@ public class MyActivity extends Activity {
         CoreFacade app = CoreFacade.getInstance(getApplicationContext());
         final Button bcreate=(Button)findViewById(R.id.bCreate);
         final Button bgroup=(Button)findViewById(R.id.bAppl);
-        final Button bmanage=(Button)findViewById(R.id.bManage);
+        //final Button bmanage=(Button)findViewById(R.id.bManage);
         final Button bhelp=(Button)findViewById(R.id.bHelp);
         final Button blog=(Button)findViewById(R.id.bLog);
         bcreate.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +71,7 @@ public class MyActivity extends Activity {
 
         });
 
-        bmanage.setOnClickListener(new View.OnClickListener() {
+        /**bmanage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -78,8 +80,7 @@ public class MyActivity extends Activity {
                         EditRule.class);
                 MyActivity.this.startActivity(intentMain);
             }
-        });
-
+        });**/
 
 
     };

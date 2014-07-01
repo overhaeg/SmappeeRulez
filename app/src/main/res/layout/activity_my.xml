@@ -22,14 +22,7 @@
         android:layout_margin="2dp"
         android:layout_weight="0.10" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Manage rules"
-        android:id="@+id/bManage"
-        android:background="#ffacb1af"
-        android:layout_margin="2dp"
-        android:layout_weight="0.10" />
+    
 
     <Button
         android:layout_width="match_parent"

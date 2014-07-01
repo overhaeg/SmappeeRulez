@@ -23,9 +23,10 @@ import be.vub.smappeerules.core.rule.ValueTerm;
 public class CoreFacade{
     private static CoreFacade OurInstance = null;
 
-    public static CoreFacade getInstance(Context ctx){ if( OurInstance == null)
+    public synchronized static CoreFacade getInstance(Context ctx){
+        if( OurInstance == null)
         try {
-            return new CoreFacade(ctx);
+            OurInstance = new CoreFacade(ctx);
         } catch (IOException e) {
             e.printStackTrace();
         }
