@@ -21,6 +21,6 @@ public class CoreFacade {
     RuleManager rm = new RuleManager(dm);
 
     public void checkRules() {
-        rm.checkRules(dm);
+        rm.checkRules();
     }
 }

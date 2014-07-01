@@ -20,4 +20,9 @@ public class Consumption implements ITerm {
     public String toRuleString() {
         return Float.toString(c);
     }
+
+    @Override
+    public float evaluate() {
+        return 0;
+    }
 }

@@ -17,6 +17,11 @@ public class Production implements ITerm {
     }
 
     @Override
+    public float evaluate() {
+        return 0;
+    }
+
+    @Override
     public String toRuleString() {
         return Float.toString(p);
     }
