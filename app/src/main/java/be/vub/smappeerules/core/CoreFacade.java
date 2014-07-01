@@ -20,7 +20,18 @@ import be.vub.smappeerules.core.rule.ValueTerm;
  * Created by Jonas on 30/06/2014.
  */
 
-public class CoreFacade extends Application{
+public class CoreFacade{
+    private static CoreFacade OurInstance = null;
+
+    public static CoreFacade getInstance(Context ctx){ if( OurInstance == null)
+        try {
+            return new CoreFacade(ctx);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+   return OurInstance;
+    }
+
     SmappeeAPI api;
     DeviceManager dm;
     RuleManager rm;

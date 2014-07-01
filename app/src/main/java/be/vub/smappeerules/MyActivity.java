@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import be.vub.smappeerules.core.CoreFacade;
 
 
 public class MyActivity extends Activity {
@@ -16,6 +17,7 @@ public class MyActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        CoreFacade app = CoreFacade.getInstance(getApplicationContext());
         final Button bcreate=(Button)findViewById(R.id.bCreate);
         final Button bgroup=(Button)findViewById(R.id.bAppl);
         final Button bmanage=(Button)findViewById(R.id.bManage);

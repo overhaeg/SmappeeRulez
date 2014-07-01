@@ -26,7 +26,6 @@ import be.vub.smappeerules.core.device.IDeviceComponent;
 
 public class AddGroupActivity extends Activity {
 
-    private CoreFacade app;
     private ListView groups;
     private EditText editName;
     private Button btnValidate;
@@ -42,7 +41,7 @@ public class AddGroupActivity extends Activity {
         setContentView(R.layout.add_group);
 
         // gets the application to get the global variables
-        app = ((CoreFacade)getApplicationContext());
+        CoreFacade app = CoreFacade.getInstance(getApplicationContext());
 
 
         groups =(ListView) findViewById(R.id.groups);
