@@ -67,6 +67,17 @@ public class MyActivity extends Activity {
 
         });
 
+        bmanage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intentMain = new Intent(MyActivity.this ,
+                        EditRule.class);
+                MyActivity.this.startActivity(intentMain);
+            }
+        });
+
 
 
     };

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/alertMessage"
+        android:id="@+id/alertMessagee"
         android:layout_gravity="center_horizontal"
         android:text="alert message" />
 
@@ -30,7 +30,7 @@
             <Spinner
                 android:layout_width="187dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/devgroup1"
+                android:id="@+id/devgroup1e"
                 android:layout_row="0"
                 android:layout_column="0"
                 android:spinnerMode="dropdown" />
@@ -38,7 +38,7 @@
             <Spinner
                 android:layout_width="183dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/propert1"
+                android:id="@+id/propert1e"
                 android:layout_row="0"
                 android:layout_column="1"
                 android:spinnerMode="dropdown" />
@@ -46,7 +46,7 @@
             <Spinner
                 android:layout_width="373dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/condition"
+                android:id="@+id/conditione"
                 android:layout_row="1"
                 android:layout_column="0"
                 android:spinnerMode="dropdown"
@@ -55,7 +55,7 @@
             <Spinner
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/devgroup2"
+                android:id="@+id/devgroup2e"
                 android:layout_row="2"
                 android:layout_column="0"
                 android:spinnerMode="dropdown" />
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OR input a"
-                android:id="@+id/textView"
+                android:id="@+id/textViewe"
                 android:layout_column="0"
                 android:layout_row="3"
                 android:layout_columnSpan="2"
@@ -74,7 +74,7 @@
             <Spinner
                 android:layout_width="183dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/propert2"
+                android:id="@+id/propert2e"
                 android:layout_row="2"
                 android:layout_column="1"
                 android:spinnerMode="dropdown" />
@@ -82,7 +82,7 @@
             <EditText
                 android:layout_width="372dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/dateorvalue"
+                android:id="@+id/dateorvaluee"
                 android:layout_row="4"
                 android:layout_column="0"
                 android:layout_columnSpan="2"
@@ -91,7 +91,7 @@
             <Button
                 android:layout_width="373dp"
                 android:layout_height="50dp"
-                android:text="Submit"
+                android:text="save change"
                 android:id="@+id/ok"
                 android:layout_row="5"
                 android:layout_column="0"

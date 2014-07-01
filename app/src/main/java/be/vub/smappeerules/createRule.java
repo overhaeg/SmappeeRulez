@@ -27,14 +27,6 @@ public class createRule extends Activity {
         setContentView(R.layout.activity_create_rule);
         Button bSubmit = (Button) findViewById(R.id.ok);
 
-        /** b.setOnClickListener(new OnClickListener(){
-
-        @Override public void onClick(View v) {
-
-        });
-        }**/
-
-
 
         ArrayList<String> propertyoptions = new ArrayList<String>();
         propertyoptions.add("consumption/production");
@@ -74,7 +66,6 @@ public class createRule extends Activity {
         Spinner dp1=(Spinner)findViewById(R.id.propert1) ;
         Spinner dp2=(Spinner)findViewById(R.id.propert2) ;
         Spinner cond=(Spinner)findViewById(R.id.condition) ;
-        Button ok=(Button)findViewById(R.id.bCreate);
         EditText valueOrPercent=(EditText)findViewById(R.id.dateorvalue);
         EditText alertMessage=(EditText)findViewById(R.id.alertMessage);
 
@@ -113,10 +104,7 @@ public class createRule extends Activity {
 
     public void fillRule(ArrayList groupoptions, ArrayList<String> propertyoptions)
         {
-            ArrayList<String> andorlist= new ArrayList<String>();
 
-            andorlist.add("AND");
-            andorlist.add("OR");
 
             ArrayList<String> conditionlist= new ArrayList<String>();
 
