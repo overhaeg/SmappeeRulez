@@ -78,7 +78,7 @@ public class createRule extends Activity {
 
         ArrayList<String> Rule= new ArrayList<String>();
 
-        if (dg2.getSelectedItem().toString()=="value"){//||dg2.getSelectedItem().toString()=="percentage") {
+        if (valueOrPercent.getText().toString()=="value"){//||dg2.getSelectedItem().toString()=="percentage") {
             // ARRAY of 5: device group, device method, condition, value, message
              Rule.add(dg1.getSelectedItem().toString());
              Rule.add(dp1.getSelectedItem().toString());
