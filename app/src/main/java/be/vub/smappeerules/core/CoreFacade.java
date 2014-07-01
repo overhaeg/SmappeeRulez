@@ -14,6 +14,7 @@ import be.vub.smappeerules.core.rule.Rule;
 /**
  * Created by Jonas on 30/06/2014.
  */
+
 public class CoreFacade {
     //TODO geef de nodige functies van RuleManager en DeviceManager door aan UI
 
