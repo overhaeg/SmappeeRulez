@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.vub.smappeerules.core.rule.Rule;
+import be.vub.smappeerules.API.SmappeeAPI;
 
 /**
  * Created by Jonas on 30/06/2014.
@@ -17,6 +17,18 @@ import be.vub.smappeerules.core.rule.Rule;
 public class DeviceManager {
     // All devices and device groups in the app
     List<IDeviceComponent> allComponents = new ArrayList<IDeviceComponent>();
+
+    SmappeeAPI api;
+
+    Context ctx;
+
+    public DeviceManager(SmappeeAPI api, Context ctx) throws IOException {
+        this.api = api;
+        api.getServiceLocations();
+        api.getServiceLocationInfo();
+        this.ctx = ctx;
+        initAllComponents();
+    }
 
     public IDeviceComponent searchComponent(String name){
         for (int i = 0; i < allComponents.size(); i++){
@@ -33,7 +45,7 @@ public class DeviceManager {
         DeviceGroup d = new DeviceGroup(temp[0]);
         for(int i = 1; i < temp.length ; i++){
             // API
-            d.addToGroup(new Device(temp[i]));
+            d.addToGroup(new Device(temp[i], api));
         }
         return d;
     }
@@ -55,15 +67,12 @@ public class DeviceManager {
         }
     }
 
-
-    //TODO PERSISTENT DEVICES
-
-    // All rules in the app
-    List<Rule> allRules = new ArrayList<Rule>();
-
     private void initAllComponents() {
-        //TODO API calls to get all present devices
-        //TODO add all these devices to the allComponents list
+        List<String> names = api.getApplianceNames();
+        for(int i = 0; i < names.size(); i++) {
+            allComponents.add(new Device(names.get(i), api));
+        }
+        readFromFile(ctx);
     }
 
     // Returns list of all devices and device groups

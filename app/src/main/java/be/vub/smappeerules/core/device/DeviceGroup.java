@@ -31,7 +31,7 @@ public class DeviceGroup implements IDeviceComponent {
     }
 
     @Override
-    public float getProduction(Date startDur, Date endDur) {
+    public float getProduction(Date startDur, Date endDur) throws IOException {
         // sum of all productions of devices
         float sum = 0;
         for(int i = 0; i < devices.size(); i++) {
@@ -41,7 +41,7 @@ public class DeviceGroup implements IDeviceComponent {
     }
 
     @Override
-    public float getConsumption(Date startDur, Date endDur) {
+    public float getConsumption(Date startDur, Date endDur) throws IOException {
         // sum of all consumptions of devices
         float sum = 0;
         for(int i = 0; i < devices.size(); i++) {

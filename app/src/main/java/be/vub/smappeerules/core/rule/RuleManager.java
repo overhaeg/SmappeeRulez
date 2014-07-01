@@ -1,5 +1,8 @@
 package be.vub.smappeerules.core.rule;
 
+import android.content.Context;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +21,7 @@ import be.vub.smappeerules.core.rule.io.RuleFile;
  */
 public class RuleManager {
     // Text file with rules //TODO change for android
-    RuleFile file = new RuleFile("C:\\Users\\Jonas\\Desktop\\" + "rules.txt");
+    RuleFile file;
 
     DeviceManager dm;
     RuleInterpreter ri = new RuleInterpreter();
@@ -26,8 +29,9 @@ public class RuleManager {
     // All rules in the app
     List<Rule> allRules = new ArrayList<Rule>();
 
-    public RuleManager(DeviceManager dm) {
+    public RuleManager(DeviceManager dm, Context ctx) {
         this.dm = dm;
+        this.file = new RuleFile("rules.txt", ctx);
         this.initAllRules();
     }
 

@@ -1,5 +1,7 @@
 package be.vub.smappeerules.core.rule.io;
 
+import android.content.Context;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,8 +18,8 @@ public class RuleFile {
     File file;
     String endLine = System.getProperty("line.separator");
 
-    public RuleFile(String path) {
-        this.file = new File(path);
+    public RuleFile(String path, Context ctx) {
+        this.file = new File(ctx.getFilesDir(), path);
         if(!file.exists()) {
             try {
                 file.createNewFile();

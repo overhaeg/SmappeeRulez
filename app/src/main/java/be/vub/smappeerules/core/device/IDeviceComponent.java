@@ -1,5 +1,6 @@
 package be.vub.smappeerules.core.device;
 
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public interface IDeviceComponent {
      * @param endDur        end time of duration
      * @return  production value
      */
-    public float getProduction(Date startDur, Date endDur);
+    public float getProduction(Date startDur, Date endDur) throws IOException;
 
     /**
      * Returns the energy consumption for a device/group for a given duration
@@ -25,5 +26,5 @@ public interface IDeviceComponent {
      * @param endDur        end time of duration
      * @return
      */
-    public float getConsumption(Date startDur, Date endDur);
+    public float getConsumption(Date startDur, Date endDur) throws IOException;
 }

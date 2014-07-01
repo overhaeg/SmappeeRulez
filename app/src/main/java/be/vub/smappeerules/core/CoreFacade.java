@@ -1,8 +1,14 @@
 package be.vub.smappeerules.core;
 
+import android.content.Context;
+
+import java.io.IOException;
 import java.util.List;
 
+import be.vub.smappeerules.API.SmappeeAPI;
+import be.vub.smappeerules.core.device.DeviceGroup;
 import be.vub.smappeerules.core.device.DeviceManager;
+import be.vub.smappeerules.core.device.IDeviceComponent;
 import be.vub.smappeerules.core.rule.ITerm;
 import be.vub.smappeerules.core.rule.Rule;
 import be.vub.smappeerules.core.rule.RuleManager;
@@ -14,8 +20,15 @@ import be.vub.smappeerules.core.rule.ValueTerm;
  */
 
 public class CoreFacade {
-    DeviceManager dm = new DeviceManager(); // TODO make sure dat devices geinit zijn voor aan rulemanager te geven
-    RuleManager rm = new RuleManager(dm);
+    SmappeeAPI api;
+    DeviceManager dm;
+    RuleManager rm;
+
+    public CoreFacade(Context ctx) throws IOException {
+        api = new SmappeeAPI();
+        dm = new DeviceManager(api, ctx);
+        rm = new RuleManager(dm, ctx);
+    }
 
     public void checkRules() {
         rm.checkRules();
@@ -43,6 +56,18 @@ public class CoreFacade {
 
     public void getAllRules() {
         rm.getAllRules();
+    }
+
+    public List<IDeviceComponent> getAllComponents() {
+        return dm.getAllComponents();
+    }
+
+    public void addGroup(DeviceGroup g) {
+        dm.addGroup(g);
+    }
+
+    public void removeGroup(DeviceGroup g) {
+        dm.removeGroup(g);
     }
 
 }
