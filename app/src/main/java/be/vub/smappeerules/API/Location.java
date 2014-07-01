@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by overhaeg on 01-07-14.
  */
+/*
 public class Location {
 
     String id;
@@ -16,7 +17,6 @@ public class Location {
     String lat;
     String electricityCost;
     String electricityCurr;
-    List<Appliance> appliances;
 
     public Location(String id, String name) {
         this.id = id;
@@ -83,3 +83,4 @@ public class Location {
     }
 }
 
+*/
