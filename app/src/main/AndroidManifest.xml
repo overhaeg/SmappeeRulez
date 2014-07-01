@@ -35,6 +35,10 @@
             android:name=".Help"
             android:label="@string/title_activity_help" >
         </activity>
+        <activity
+            android:name=".EditRule"
+            android:label="@string/title_activity_edit_rule" >
+        </activity>
     </application>
 
 </manifest>

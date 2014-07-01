@@ -37,11 +37,13 @@ public class createRule extends Activity {
 
 
         ArrayList<String> propertyoptions = new ArrayList<String>();
+        propertyoptions.add("consumption/production");
         propertyoptions.add("consumption");
         propertyoptions.add("production");
 
 
         ArrayList<String> groupoptions = new ArrayList<String>();
+        groupoptions.add("Select applience");
         groupoptions.add("Refrigirator");
         groupoptions.add("lamp");
         groupoptions.add("TV");
@@ -78,7 +80,10 @@ public class createRule extends Activity {
 
         ArrayList<String> Rule= new ArrayList<String>();
 
-        if (valueOrPercent.getText().toString()=="value"){//||dg2.getSelectedItem().toString()=="percentage") {
+        if (dg2.getSelectedItem().toString()=="Select applience"||
+                dp2.getSelectedItem().toString()=="consumption/production"
+                //valueOrPercent.getText().toString()=="value"
+                ){//||dg2.getSelectedItem().toString()=="percentage") {
             // ARRAY of 5: device group, device method, condition, value, message
              Rule.add(dg1.getSelectedItem().toString());
              Rule.add(dp1.getSelectedItem().toString());
