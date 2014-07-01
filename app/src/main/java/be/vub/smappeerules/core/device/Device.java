@@ -8,31 +8,26 @@ import be.vub.smappeerules.API.Appliance;
  * Created by Jonas on 30/06/2014.
  */
 public class Device implements IDeviceComponent {
-    Appliance appl;
+    String name;
 
-    public Device(Appliance appl) {
-        this.appl = appl;
+    public Device(String name) {
+        this.name = name;
     }
 
     @Override
     public String getName() {
-        return appl.getName();
+        return this.name;
     }
-
-    /*@Override
-    public void setName(String name) {
-        this.name = name;
-    }*/
 
     @Override
     public float getProduction(Date startDur, Date endDur) {
-        //TODO appl.getProduction();
+        //TODO vraag appliance met naam aan API
         return 0;
     }
 
     @Override
     public float getConsumption(Date startDur, Date endDur) {
-        //TODO appl.getConsumption();
+        //TODO vraag appliance met naam aan API
         return 0;
     }
 }

@@ -32,6 +32,7 @@ public class DeviceManager {
         temp = s.split(delimeter);
         DeviceGroup d = new DeviceGroup(temp[0]);
         for(int i = 1; i < temp.length ; i++){
+            // API
             d.addToGroup(new Device(temp[i]));
         }
         return d;

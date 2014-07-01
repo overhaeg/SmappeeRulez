@@ -1,17 +1,14 @@
 package be.vub.smappeerules.core.device;
 
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,11 +31,6 @@ public class DeviceGroup implements IDeviceComponent {
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
     public float getProduction(Date startDur, Date endDur) {
         // sum of all productions of devices
         float sum = 0;
@@ -54,36 +46,6 @@ public class DeviceGroup implements IDeviceComponent {
         float sum = 0;
         for(int i = 0; i < devices.size(); i++) {
             sum =+ devices.get(i).getConsumption(startDur, endDur);
-        }
-        return sum;
-    }
-
-    @Override
-    public boolean isOn() {
-        // all devices on?
-        boolean acc = true;
-        for(int i = 0; i < devices.size(); i++) {
-            acc = acc && devices.get(i).isOn();
-        }
-        return acc;
-    }
-
-    @Override
-    public boolean isOff() {
-        // all devices on?
-        boolean acc = true;
-        for(int i = 0; i < devices.size(); i++) {
-            acc = acc && devices.get(i).isOff();
-        }
-        return acc;
-    }
-
-    @Override
-    public float getStatusDuration() {
-        // sum of all consumptions of devices
-        float sum = 0;
-        for(int i = 0; i < devices.size(); i++) {
-            sum =+ devices.get(i).getStatusDuration();
         }
         return sum;
     }
