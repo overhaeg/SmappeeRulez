@@ -6,6 +6,7 @@ import be.vub.smappeerules.core.device.IDeviceComponent;
 /**
  * Created by Jonas on 30/06/2014.
  */
+
 public class RuleInterpreter {
     public Rule interpretRule(String rule, DeviceManager dm) {
         // TODO moet hier eig niet geevalueerd worden!!

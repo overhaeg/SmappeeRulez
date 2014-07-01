@@ -10,11 +10,11 @@
         android:layout_height="200dp"
 
         android:id="@+id/imageView"
-        android:src="@drawable/smap"
+        android:src="@drawable/smapp"
         android:layout_gravity="center_horizontal" />
 
     <Button
-        android:layout_width="401dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create new rule"
         android:id="@+id/bCreate"
@@ -32,7 +32,7 @@
         android:layout_weight="0.10" />
 
     <Button
-        android:layout_width="398dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="See alert log"
         android:id="@+id/bLog"
@@ -50,12 +50,13 @@
         android:layout_weight="0.10" />
 
     <Button
-        android:layout_width="397dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="HELP ME"
         android:id="@+id/bHelp"
         android:background="#abb865"
         android:clickable="true"
+        android:layout_margin="2dp"
         android:layout_weight="0.10" />
 
 </LinearLayout>

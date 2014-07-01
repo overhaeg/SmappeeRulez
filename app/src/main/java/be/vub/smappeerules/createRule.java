@@ -1,11 +1,15 @@
 package be.vub.smappeerules;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 
@@ -21,7 +25,7 @@ public class createRule extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_rule);
-        Button addRule = (Button) findViewById(R.id.addRule);
+        Button bSubmit = (Button) findViewById(R.id.ok);
 
         /** b.setOnClickListener(new OnClickListener(){
 
@@ -30,24 +34,87 @@ public class createRule extends Activity {
         });
         }**/
 
+
+
         ArrayList<String> propertyoptions = new ArrayList<String>();
         propertyoptions.add("consumption");
         propertyoptions.add("production");
-        propertyoptions.add("duration on");
-        propertyoptions.add("duration off");
+
+
+        ArrayList<String> groupoptions1 = new ArrayList<String>();
+        groupoptions1.add("Refrigirator");
+        groupoptions1.add("lamp");
+        groupoptions1.add("TV");
 
 
 
-        ArrayList<String> groupoptions = new ArrayList<String>();
-        groupoptions.add("Refrigirator");
-        groupoptions.add("lamp");
-        groupoptions.add("TV");
-        fillRule(groupoptions, propertyoptions);
+        ArrayList<String> groupoptions2 = new ArrayList<String>();
+        groupoptions2.add("Refrigirator");
+        groupoptions2.add("lamp");
+        groupoptions2.add("TV");
+        groupoptions2.add("value");
+        //groupoptions2.add("percentage");
 
+
+        fillRule(groupoptions1,groupoptions2, propertyoptions);
+
+        bSubmit.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intentMain = new Intent(createRule.this ,
+                        MyActivity.class);
+                createRule.this.startActivity(intentMain);
+                Log.d(createRule().get(1), "hip hoy");
+            }
+
+
+
+        });
     }
 
+    public ArrayList<String> createRule(){
+        Spinner dg1=(Spinner)findViewById(R.id.devgroup1) ;
+        Spinner dg2=(Spinner)findViewById(R.id.devgroup2) ;
+        Spinner dp1=(Spinner)findViewById(R.id.propert1) ;
+        Spinner dp2=(Spinner)findViewById(R.id.propert2) ;
+        Spinner cond=(Spinner)findViewById(R.id.condition) ;
+        Button ok=(Button)findViewById(R.id.bCreate);
+        EditText valueOrPercent=(EditText)findViewById(R.id.dateorvalue);
+        EditText alertMessage=(EditText)findViewById(R.id.alertMessage);
 
-    public void fillRule(ArrayList groupoptions, ArrayList<String> propertyoptions)
+        ArrayList<String> Rule= new ArrayList<String>();
+
+        if (dg2.getSelectedItem().toString()=="value"){//||dg2.getSelectedItem().toString()=="percentage") {
+            // ARRAY of 5: device group, device method, condition, value, message
+             Rule.add(dg1.getSelectedItem().toString());
+             Rule.add(dp1.getSelectedItem().toString());
+             if (cond.getSelectedItem().toString()=="not =")
+                {Rule.add("!=");}
+                else {Rule.add(cond.getSelectedItem().toString());}
+             Rule.add(valueOrPercent.getText().toString());
+             Rule.add(alertMessage.getText().toString());
+
+
+            }
+            else{
+            //ARRAY of 6 device group, device method, condition, device group, device method, message
+             Rule.add(dg1.getSelectedItem().toString());
+             Rule.add(dp1.getSelectedItem().toString());
+             if (cond.getSelectedItem().toString()=="not =")
+                {Rule.add("!=");}
+                else {Rule.add(cond.getSelectedItem().toString());}
+             Rule.add(dg2.getSelectedItem().toString());
+             Rule.add(dp2.getSelectedItem().toString());
+             Rule.add(alertMessage.getText().toString());
+            };
+        return Rule;
+    };
+
+
+
+    public void fillRule(ArrayList groupoptions1,ArrayList<String> groupoptions2, ArrayList<String> propertyoptions)
         {
             ArrayList<String> andorlist= new ArrayList<String>();
 
@@ -64,14 +131,14 @@ public class createRule extends Activity {
             conditionlist.add("not =");
 
             // Fill the first device  group
-            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
+            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions1);
             adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner1=(Spinner)findViewById(R.id.devgroup1) ;
             mSpinner1.setAdapter(adapter1);
 
 
             // Fill the second device group
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions2);
             adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner2=(Spinner)findViewById(R.id.devgroup2) ;
             mSpinner2.setAdapter(adapter2);
@@ -83,7 +150,7 @@ public class createRule extends Activity {
             mSpinner3.setAdapter(adapter3);
 
             // Fill the second device propery
-            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
+            ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,propertyoptions);
             adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner4=(Spinner)findViewById(R.id.propert2) ;
             mSpinner4.setAdapter(adapter4);
