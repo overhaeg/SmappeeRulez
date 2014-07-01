@@ -28,6 +28,7 @@ public class RuleManager {
 
     public RuleManager(DeviceManager dm) {
         this.dm = dm;
+        this.initAllRules();
     }
 
     private void initAllRules() {
@@ -61,9 +62,15 @@ public class RuleManager {
 
     //TODO als vanuit UI geen Rule object gegeven mag worden... soort van String-based lookup doen van een rule in de allRules om te removen
 
-    public void checkRules() {
-
-        //TODO check each rule seperately, using the device manager provided.
+    // Checks all rules.
+    // If return list is empty, no alerts need to be given.
+    public List<String> checkRules() {
+        List<String> alertList = new ArrayList<String>();
+        for (int i = 0; i < allRules.size(); i++) {
+            if(allRules.get(i).isTrue())
+                alertList.add(allRules.get(i).getAlert());
+        }
+        return alertList;
     }
 
 }

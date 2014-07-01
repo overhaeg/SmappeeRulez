@@ -2,7 +2,6 @@ package be.vub.smappeerules.core.rule;
 
 import java.util.Date;
 
-import be.vub.smappeerules.core.datatypes.Consumption;
 import be.vub.smappeerules.core.device.IDeviceComponent;
 
 /**
@@ -20,20 +19,14 @@ public class Term implements ITerm {
     @Override
     public float evaluate() {
         if (this.method.equals("consumption")) {
-            //TODO parse ...(...-...)
-            Date start = new Date();
-            Date end = new Date();
-            return c.getConsumption(start, end);
+            return c.getConsumption(new Date(), new Date());
         } else {    // (this.method.equals("production"))
-            //TODO parse ...(...-...)
-            Date start = new Date();
-            Date end = new Date();
-            return c.getProduction(start, end);
+            return c.getProduction(new Date(), new Date());
         }
     }
 
     @Override
     public String toRuleString() {
-        return "";
+        return c.getName() + ":" + method;
     }
 }

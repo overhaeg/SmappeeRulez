@@ -14,7 +14,7 @@ import be.vub.smappeerules.core.rule.RuleInterpreter;
  */
 public class MainToTest {
     public static void main(String [] args) {
-        RuleFile file = new RuleFile("C:\\Users\\Jonas\\Desktop\\" + "rules.txt");
+       /* RuleFile file = new RuleFile("C:\\Users\\Jonas\\Desktop\\" + "rules.txt");
 
         file.addNewRule("bla => bla");
 
@@ -22,5 +22,9 @@ public class MainToTest {
 
         RuleInterpreter ri = new RuleInterpreter();
         //file.readRules(ri);
+*/
+        String ifPart = "a qsdf bc";
+        String[] s = ifPart.split(" .* ");
+        System.out.println(s[0] + s[1]);
     }
 }

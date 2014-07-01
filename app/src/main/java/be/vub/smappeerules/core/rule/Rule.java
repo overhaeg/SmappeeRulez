@@ -25,7 +25,7 @@ public class Rule {
     }
 
     public String toRuleString() {
-        return term1.toRuleString() + op + term2.toRuleString() + "->" + alert;
+        return term1.toRuleString() + "_" + op + "_" + term2.toRuleString() + " -> " + alert;
     }
 
     public String getAlert() {
