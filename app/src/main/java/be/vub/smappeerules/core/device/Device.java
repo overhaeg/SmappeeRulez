@@ -2,53 +2,37 @@ package be.vub.smappeerules.core.device;
 
 import java.util.Date;
 
+import be.vub.smappeerules.API.Appliance;
+
 /**
  * Created by Jonas on 30/06/2014.
  */
 public class Device implements IDeviceComponent {
-    String name;
+    Appliance appl;
 
-    public Device(String name) {
-        this.name = name;
+    public Device(Appliance appl) {
+        this.appl = appl;
     }
 
     @Override
     public String getName() {
-        return name;
+        return appl.getName();
     }
 
-    @Override
+    /*@Override
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
     @Override
     public float getProduction(Date startDur, Date endDur) {
-        //TODO API stuff
+        //TODO appl.getProduction();
         return 0;
     }
 
     @Override
     public float getConsumption(Date startDur, Date endDur) {
-        //TODO API stuff
-        return 0;
-    }
-
-    @Override
-    public boolean isOn() {
-        //TODO API stuff
-        return false;
-    }
-
-    @Override
-    public boolean isOff() {
-        //TODO API stuff
-        return false;
-    }
-
-    @Override
-    public float getStatusDuration() {
-        //TODO API stuff
+        //TODO appl.getConsumption();
         return 0;
     }
 }
