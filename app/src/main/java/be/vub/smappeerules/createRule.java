@@ -41,22 +41,13 @@ public class createRule extends Activity {
         propertyoptions.add("production");
 
 
-        ArrayList<String> groupoptions1 = new ArrayList<String>();
-        groupoptions1.add("Refrigirator");
-        groupoptions1.add("lamp");
-        groupoptions1.add("TV");
+        ArrayList<String> groupoptions = new ArrayList<String>();
+        groupoptions.add("Refrigirator");
+        groupoptions.add("lamp");
+        groupoptions.add("TV");
 
 
-
-        ArrayList<String> groupoptions2 = new ArrayList<String>();
-        groupoptions2.add("Refrigirator");
-        groupoptions2.add("lamp");
-        groupoptions2.add("TV");
-        groupoptions2.add("value");
-        //groupoptions2.add("percentage");
-
-
-        fillRule(groupoptions1,groupoptions2, propertyoptions);
+        fillRule(groupoptions, propertyoptions);
 
         bSubmit.setOnClickListener(new View.OnClickListener() {
 
@@ -115,7 +106,7 @@ public class createRule extends Activity {
 
 
 
-    public void fillRule(ArrayList groupoptions1,ArrayList<String> groupoptions2, ArrayList<String> propertyoptions)
+    public void fillRule(ArrayList groupoptions1, ArrayList<String> propertyoptions)
         {
             ArrayList<String> andorlist= new ArrayList<String>();
 
@@ -132,14 +123,14 @@ public class createRule extends Activity {
             conditionlist.add("not =");
 
             // Fill the first device  group
-            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions1);
+            ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
             adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner1=(Spinner)findViewById(R.id.devgroup1) ;
             mSpinner1.setAdapter(adapter1);
 
 
             // Fill the second device group
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions2);
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
             adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             Spinner mSpinner2=(Spinner)findViewById(R.id.devgroup2) ;
             mSpinner2.setAdapter(adapter2);
