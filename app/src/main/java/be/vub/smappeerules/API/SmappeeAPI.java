@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -23,6 +24,7 @@ public class SmappeeAPI {
 
     String access_token;
     String refresh_token;
+    String lastUpdate = "0";
 
     public SmappeeAPI() throws IOException {
 
@@ -190,21 +192,38 @@ public class SmappeeAPI {
         location.updateLocation(timezone,lon,lat,electricityCost,electricityCurr, appliances);
 
     }
-/*
-    public JsonObject getConsumption(String id, String from, String to, String aggregation) throws IOException {
 
-        String url_string = Constants.GET_URL + "/" +  id + "/consumption?"
+
+
+    public List<Consumption> getConsumption(Location loc, String from, String to, String aggregation) throws IOException {
+
+        String url_string = Constants.GET_URL + "/" +  loc.getId() + "/consumption?"
                 + "aggregation=" + aggregation + "&"
                 + "from=" + from + "&"
                 + "to=" + to;
         URL url = new URL(url_string);
 
-        JsonObject jsonObj = getData(url);
+        StringBuffer response = getData(url);
+        JsonObject jsonObj = new JsonParser().parse(response.toString()).getAsJsonObject();
+        JsonArray j_consumptions = jsonObj.getAsJsonArray("consumptions");
 
-        return jsonObj;
+        List<Consumption> consumptions = new ArrayList<Consumption>();
+
+        for (int i = 0; i<j_consumptions.size();i++)
+        {
+            JsonObject obj = j_consumptions.get(i).getAsJsonObject();
+            String timestamp = obj.get("timestamp").getAsString();
+            String consumption = obj.get("consumption").getAsString();
+            String solar = obj.get("solar").getAsString();
+            String alwaysOn = obj.get("alwaysOn").getAsString();
+            Consumption con = new Consumption(timestamp, consumption, solar, alwaysOn);
+            consumptions.add(con);
+        }
+
+        return consumptions;
 
     }
-
+/*
     public JsonObject getEvents(String id, List<String> applianceIds, String from, String to, String maxNumber) throws IOException {
 
         String appIds_string = "";
@@ -225,5 +244,13 @@ public class SmappeeAPI {
 
     }
     */
+    public String getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
 
 }
