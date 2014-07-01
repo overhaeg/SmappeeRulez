@@ -1,6 +1,7 @@
 package be.vub.smappeerules.API;
 
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -9,8 +10,9 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -22,16 +24,18 @@ public class SmappeeAPI {
 
     String access_token;
     String refresh_token;
+    String lastUpdate = "0";
 
     public SmappeeAPI() throws IOException {
 
 
         URL url = new URL(Constants.AUTH_URL);
         String parameters = "grant_type=" + Constants.GRANT_PSW + "&" +
-                "client_id" + Constants.CLIENT_ID + "&" +
-                "client_secret" + Constants.CLIENT_SECRET + "&" +
-                "username" + Constants.USERNAME + "&" +
-                "password" + Constants.PASSWORD;
+                "client_id=" + Constants.CLIENT_ID + "&" +
+                "client_secret=" + Constants.CLIENT_SECRET + "&" +
+                "username=" + Constants.USERNAME + "&" +
+                "password=" + Constants.PASSWORD;
+        System.out.println(parameters);
         HttpsURLConnection connection = postConnection(url, parameters);
 
         BufferedReader in = new BufferedReader(
@@ -53,14 +57,14 @@ public class SmappeeAPI {
 
     }
 
-    private JsonObject getData(URL url) throws IOException
+    private StringBuffer getData(URL url) throws IOException
     {
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
         connection.setRequestMethod("GET");
-
-        connection.setRequestProperty("Authorization", access_token);
-
+        String access = "Bearer " + access_token;
+        connection.setRequestProperty("Authorization", access);
+        System.out.println(access);
 
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()));
@@ -71,10 +75,12 @@ public class SmappeeAPI {
             response.append(inputLine);
         }
         in.close();
+        System.out.println(response.toString());
 
-        JsonObject jsonObj = new JsonParser().parse(response.toString()).getAsJsonObject();
+        return response;
 
-        return jsonObj;
+
+
     }
 
     private HttpsURLConnection postConnection(URL url, String parameters) throws IOException
@@ -82,9 +88,10 @@ public class SmappeeAPI {
 
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
+        connection.setRequestProperty("Host", "app1pub.smappee.net");
         connection.setRequestProperty("Content-Type",
                 "application/x-www-form-urlencoded");
-        connection.setRequestProperty("charset", "utf-8");
+        connection.setRequestProperty("charset", "UTF-8");
         connection.setRequestProperty("Content-Length", "" + Integer.toString(parameters.getBytes().length));
 
         connection.setDoOutput(true);
@@ -128,42 +135,95 @@ public class SmappeeAPI {
         refresh_token = ref_tok.getAsString();
 
     }
+    //Returns a list with Location objects for each location.
+    public List<Location> getServiceLocations() throws IOException {
 
-    public JsonObject getServiceLocations() throws IOException {
+        List<Location> locations = new ArrayList<Location>();
 
         URL url = new URL(Constants.GET_URL);
 
-        JsonObject jsonObj = getData(url);
+        StringBuffer response = getData(url);
 
-        return jsonObj;
+        JsonArray jsonArr = new JsonParser().parse(response.toString()).getAsJsonArray();
+
+        for(int i = 0; i<jsonArr.size(); i++)
+        {
+            JsonObject obj = jsonArr.get(i).getAsJsonObject();
+            String id = obj.get("serviceLocationId").getAsString();
+            String name = obj.get("name").getAsString();
+            Location location = new Location(id, name);
+            locations.add(location);
+        }
+
+        return locations;
 
     }
 
 
-    public JsonObject getServiceLocationInfo(String id) throws IOException {
+    public void getServiceLocationInfo(Location location) throws IOException {
 
-        String url_string = Constants.GET_URL + "/" +  id + "/info";
+        String url_string = Constants.GET_URL + "/" +  location.getId() + "/info";
         URL url = new URL(url_string);
 
-        JsonObject jsonObj = getData(url);
+        StringBuffer response = getData(url);
+        JsonObject jsonObj = new JsonParser().parse(response.toString()).getAsJsonObject();
+        String timezone;
+        if (jsonObj.has("timezone"))
+            timezone = jsonObj.get("timezone").getAsString();
+        else timezone = "";
 
-        return jsonObj;
+        String lon = jsonObj.get("lon").getAsString();
+        String lat = jsonObj.get("lat").getAsString();
+        String electricityCost = jsonObj.get("electricityCost").getAsString();
+        String electricityCurr = jsonObj.get("electricityCurrency").getAsString();
+
+        JsonArray j_appliances = jsonObj.getAsJsonArray("appliances");
+        List<Appliance> appliances = new ArrayList<Appliance>();
+
+        for (int i = 0; i<j_appliances.size();i++)
+        {
+            JsonObject obj = j_appliances.get(i).getAsJsonObject();
+            String id = obj.get("id").getAsString();
+            String name = obj.get("name").getAsString();
+            Appliance appliance = new Appliance(id, name);
+            appliances.add(appliance);
+        }
+
+        location.updateLocation(timezone,lon,lat,electricityCost,electricityCurr, appliances);
+
     }
 
-    public JsonObject getConsumption(String id, String from, String to, String aggregation) throws IOException {
 
-        String url_string = Constants.GET_URL + "/" +  id + "/consumption?"
+
+    public List<Consumption> getConsumption(Location loc, String from, String to, String aggregation) throws IOException {
+
+        String url_string = Constants.GET_URL + "/" +  loc.getId() + "/consumption?"
                 + "aggregation=" + aggregation + "&"
                 + "from=" + from + "&"
                 + "to=" + to;
         URL url = new URL(url_string);
 
-        JsonObject jsonObj = getData(url);
+        StringBuffer response = getData(url);
+        JsonObject jsonObj = new JsonParser().parse(response.toString()).getAsJsonObject();
+        JsonArray j_consumptions = jsonObj.getAsJsonArray("consumptions");
 
-        return jsonObj;
+        List<Consumption> consumptions = new ArrayList<Consumption>();
+
+        for (int i = 0; i<j_consumptions.size();i++)
+        {
+            JsonObject obj = j_consumptions.get(i).getAsJsonObject();
+            String timestamp = obj.get("timestamp").getAsString();
+            String consumption = obj.get("consumption").getAsString();
+            String solar = obj.get("solar").getAsString();
+            String alwaysOn = obj.get("alwaysOn").getAsString();
+            Consumption con = new Consumption(timestamp, consumption, solar, alwaysOn);
+            consumptions.add(con);
+        }
+
+        return consumptions;
 
     }
-
+/*
     public JsonObject getEvents(String id, List<String> applianceIds, String from, String to, String maxNumber) throws IOException {
 
         String appIds_string = "";
@@ -183,5 +243,14 @@ public class SmappeeAPI {
         return jsonObj;
 
     }
+    */
+    public String getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
 
 }
