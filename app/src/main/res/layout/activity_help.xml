@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="be.vub.smappeerules.Help">
+
+    <TextView
+        android:text="Welcome to Snappy rulez! This application was created so that users of the smappy device (like you) could create their own rules. A rule means a condition regarding your energy that, if fullfilled , will send you a notification.
+        Each rule is created by selecting an applience or group of appliences and if you want to monitor the consumption or in the case of solar panels the production. After this you select an operator if the consumption/production should be more, less, equal or not equal to the production/consumption of an other device group or value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
