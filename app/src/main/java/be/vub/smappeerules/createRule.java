@@ -106,7 +106,7 @@ public class createRule extends Activity {
 
 
 
-    public void fillRule(ArrayList groupoptions1, ArrayList<String> propertyoptions)
+    public void fillRule(ArrayList groupoptions, ArrayList<String> propertyoptions)
         {
             ArrayList<String> andorlist= new ArrayList<String>();
 
