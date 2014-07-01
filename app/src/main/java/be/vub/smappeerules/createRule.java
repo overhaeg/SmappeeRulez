@@ -70,9 +70,6 @@ public class createRule extends Activity {
             mSpinner1.setAdapter(adapter1);
 
 
-
-
-
             // Fill the second device group
             ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,groupoptions);
             adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

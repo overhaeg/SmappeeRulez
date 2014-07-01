@@ -17,7 +17,10 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         final Button bcreate=(Button)findViewById(R.id.bCreate);
-
+        final Button bgroup=(Button)findViewById(R.id.bAppl);
+        final Button bmanage=(Button)findViewById(R.id.bManage);
+        final Button bhelp=(Button)findViewById(R.id.bHelp);
+        final Button blog=(Button)findViewById(R.id.bLog);
         bcreate.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -29,28 +32,39 @@ public class MyActivity extends Activity {
             }
         });
 
-      /**View.OnClickListener handler = new View.OnClickListener(){
+        bgroup.setOnClickListener(new View.OnClickListener() {
 
+            @Override
             public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intentMain = new Intent(MyActivity.this ,
+                        AddGroupActivity.class);
+                MyActivity.this.startActivity(intentMain);
+            }
+        });
 
-                if(v.equals(bcreate)){
-                    // doStuff
-                    Intent intentMain = new Intent(MyActivity.this ,
-                            createRule.class);
-                    MyActivity.this.startActivity(intentMain);
-                    Log.i("Content ", " Main layout ");
-                }
-                Log.d(v);
-               if(v==btnApp){
-                    // doStuff
-                    Intent intentApp = new Intent(CurrentActivity.this,
-                            ThirdActivity.class);
+        blog.setOnClickListener(new View.OnClickListener() {
 
-                    CurrentActivity.this.startActivity(intentApp);
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intentMain = new Intent(MyActivity.this ,
+                       AlertLogActivity.class);
+                MyActivity.this.startActivity(intentMain);
+            }
+        });
 
-                    Log.i("Content "," App layout ");
+        bhelp.setOnClickListener(new View.OnClickListener() {
 
-                }**/
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intentMain = new Intent(MyActivity.this ,
+                        createRule.class);
+                MyActivity.this.startActivity(intentMain);
+            }
+        });
+
 
 
     };
