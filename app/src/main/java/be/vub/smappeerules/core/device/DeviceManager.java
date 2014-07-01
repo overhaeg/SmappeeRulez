@@ -1,5 +1,8 @@
 package be.vub.smappeerules.core.device;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +22,31 @@ public class DeviceManager {
                 return allComponents.get(i);
         }
         return null;
+    }
+
+    private DeviceGroup StringToDeviceGroup(String s){
+        String[] temp;
+        String delimeter = ", ";
+        temp = s.split(delimeter);
+        DeviceGroup d = new DeviceGroup(temp[0]);
+        for(int i = 1; i < temp.length ; i++){
+            d.addToGroup(new Device(temp[i]));
+        }
+        return d;
+    }
+
+    public void readFromFile() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("devices.txt"));
+            String line = br.readLine();
+
+            while (line != null) {
+                allComponents.add(StringToDeviceGroup(line));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

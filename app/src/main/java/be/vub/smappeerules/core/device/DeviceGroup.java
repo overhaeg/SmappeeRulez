@@ -101,7 +101,7 @@ public class DeviceGroup implements IDeviceComponent {
 
     public void writeToFile(){
         // The name of the file to open.
-        String fileName = "devicegroups.txt";
+        String fileName = "devices.txt";
 
         // This will reference one line at a time
         String line = null;

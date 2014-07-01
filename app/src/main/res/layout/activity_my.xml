@@ -10,7 +10,7 @@
         android:layout_height="200dp"
 
         android:id="@+id/imageView"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/smap"
         android:layout_gravity="center_horizontal" />
 
     <Button
